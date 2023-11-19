@@ -13,6 +13,8 @@ Demo.xcodeproj
 .derivedData
 .packages
 .build
+.build-xcode
 .swiftpm
 
 *.resolved
+.DS_Store

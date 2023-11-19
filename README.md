@@ -3,7 +3,7 @@
 Demonstrating vscode development environment using xcodegen + HotReloading.
 
 - Language Server Protocol for Swift with [vscode-swift](https://github.com/swift-server/vscode-swift) extension.
-- Lint Swift with [SwiftLint](https://github.com/shinnn/vscode-swiftlint) extension.
+- Lint Swift with [SwiftLint](https://github.com/vknabel/vscode-swiftlint) extension.
 - Xcode project generating using [XcodeGen](https://github.com/yonaskolb/XcodeGen)
 - Launch & debugging with lldb [iOS Debug](https://github.com/nisargjhaveri/vscode-ios-debug)
 - HotReloading & Injection with [HotReloading](https://github.com/johnno1962/HotReloading)

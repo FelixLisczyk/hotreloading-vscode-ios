@@ -1,0 +1,11 @@
+{
+  "argv": ["/usr/local/bin/xcode-build-server"],
+  "bspVersion": "2.0",
+  "build_root": "/Users/felix/Developer/Swift/Vendor/hotreloading-vscode-ios/.build-xcode",
+  "kind": "xcode",
+  "languages": ["c", "cpp", "objective-c", "objective-cpp", "swift"],
+  "name": "xcode build server",
+  "scheme": "Demo",
+  "version": "0.2",
+  "workspace": "/Users/felix/Developer/Swift/Vendor/hotreloading-vscode-ios/Demo.xcodeproj/project.xcworkspace"
+}

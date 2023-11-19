@@ -2,6 +2,7 @@
   "recommendations": [
     "nisargjhaveri.ios-debug",
     "sswg.swift-lang",
+    "vknabel.vscode-swiftformat",
     "vknabel.vscode-swiftlint"
   ]
 }

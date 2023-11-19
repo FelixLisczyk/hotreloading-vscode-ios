@@ -6,16 +6,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "lldb",
-      "request": "launch",
-      "name": "xcodegen",
-      "program": "xcodegen"
-    },
-    {
       "name": "Launch",
       "type": "lldb",
       "request": "launch",
-      "program": "~/Library/Developer/Xcode/DerivedData/Demo-avuzscipzqxczrbltxhlvbnxujdo/Build/Products/Debug-${command:ios-debug.targetSdk}/Demo.app",
+      "program": "${workspaceFolder}/.build-xcode/Build/Products/Debug-${command:ios-debug.targetSdk}/Demo.app",
       "iosBundleId": "dev.mt.Demo",
       "iosTarget": "select",
       "preLaunchTask": "${defaultBuildTask}"
