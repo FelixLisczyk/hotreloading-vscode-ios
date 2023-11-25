@@ -1,8 +1,8 @@
-swiftlint_version: 0.47.1
-
 excluded:
-  - .vscode
   - .build
+  - .build-xcode
+  - .swiftpm
+  - .vscode
 
 opt_in_rules:
   - empty_count

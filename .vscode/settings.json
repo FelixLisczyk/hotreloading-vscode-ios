@@ -9,10 +9,7 @@
     "editor.defaultFormatter": "vknabel.vscode-swiftformat"
   },
 
-  "swiftlint.enable": true,
   "swiftlint.configSearchPaths": ["./.swiftlint.yml"],
-  "swiftlint.autoLintWorkspace": false,
-  "swiftlint.additionalParameters": ["--format"],
 
   "swift.swiftEnvironmentVariables": {},
   "[ignore]": {
