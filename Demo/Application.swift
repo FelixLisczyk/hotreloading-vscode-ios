@@ -1,7 +1,7 @@
 import SwiftUI
 
-#if DEBUG
-@_exported import Inject
+#if os(iOS) || os(macOS)
+  @_exported import Inject
 #endif
 
 @main

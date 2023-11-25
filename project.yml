@@ -13,7 +13,10 @@ targets:
     type: application
     platform: iOS
     deploymentTarget: "14.0"
-    sources: [Application, Demo]
+    sources:
+      - path: Demo
+        excludes:
+          - Info_watchOS.plist
     dependencies:
       - sdk: SwiftUI.framework
       - package: HotReloading
@@ -21,14 +24,17 @@ targets:
     settings:
       base:
         CURRENT_PROJECT_VERSION: 1
+        INFOPLIST_FILE: "Demo/Info.plist"
         MARKETING_VERSION: 1
         OTHER_LDFLAGS: "-Xlinker -interposable -Xlinker -undefined -Xlinker dynamic_lookup"
-        INFOPLIST_FILE: "Application/Info.plist"
   Demo_macOS:
     type: application
     platform: macOS
     deploymentTarget: "12.0"
-    sources: [Application, Demo]
+    sources:
+      - path: Demo
+        excludes:
+          - Info_watchOS.plist
     dependencies:
       - sdk: SwiftUI.framework
       - package: HotReloading
@@ -36,6 +42,22 @@ targets:
     settings:
       base:
         CURRENT_PROJECT_VERSION: 1
+        INFOPLIST_FILE: "Demo/Info.plist"
         MARKETING_VERSION: 1
         OTHER_LDFLAGS: "-Xlinker -interposable -Xlinker -undefined -Xlinker dynamic_lookup"
-        INFOPLIST_FILE: "Application/Info.plist"
+  Demo_watchOS:
+    type: application
+    platform: watchOS
+    deploymentTarget: "8.0"
+    sources:
+      - path: Demo
+        excludes:
+          - Info.plist
+    dependencies:
+      - sdk: SwiftUI.framework
+    settings:
+      base:
+        CURRENT_PROJECT_VERSION: 1
+        INFOPLIST_FILE: "Demo/Info_watchOS.plist"
+        MARKETING_VERSION: 1
+        PRODUCT_BUNDLE_IDENTIFIER: dev.mt.Demo-iOS.watchkitapp

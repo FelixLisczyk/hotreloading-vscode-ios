@@ -5,7 +5,8 @@
   "options": {
     "env": {
       "XCODE_BUILD_IOS": "xcodebuild -scheme Demo_iOS -configuration Debug -sdk ${command:ios-debug.targetSdk} -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates",
-      "XCODE_BUILD_MAC": "xcodebuild -scheme Demo_macOS -configuration Debug -sdk macosx -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates"
+      "XCODE_BUILD_MAC": "xcodebuild -scheme Demo_macOS -configuration Debug -sdk macosx -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates",
+      "XCODE_BUILD_WATCH": "xcodebuild -scheme Demo_watchOS -configuration Debug -sdk watchsimulator -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates"
     }
   },
   "tasks": [
@@ -35,8 +36,7 @@
       "type": "shell",
       "command": "${XCODE_BUILD_MAC} build",
       "group": {
-        "kind": "build",
-        "isDefault": true
+        "kind": "build"
       },
       "dependsOn": ["xcodegen"]
     },
@@ -45,6 +45,62 @@
       "type": "shell",
       "command": "${XCODE_BUILD_MAC} clean build",
       "dependsOn": ["xcodegen"]
+    },
+    {
+      "label": "watchOS - Build",
+      "type": "shell",
+      "command": "${XCODE_BUILD_WATCH} build",
+      "group": {
+        "kind": "build"
+      },
+      "dependsOn": ["xcodegen"]
+    },
+    {
+      "label": "watchOS - Clean & Build",
+      "type": "shell",
+      "command": "${XCODE_BUILD_WATCH} clean build",
+      "dependsOn": ["xcodegen"]
+    },
+    {
+      "label": "Boot watchOS Simulator",
+      "type": "shell",
+      "command": "xcrun",
+      "args": ["simctl", "boot", "25BC9961-2AF3-40A6-BCF5-EDF0843299F8"],
+      "dependsOn": "watchOS - Build"
+    },
+    {
+      "label": "Wait for Simulator",
+      "type": "shell",
+      "command": "sleep",
+      "args": ["10"],
+      "dependsOn": "Boot watchOS Simulator"
+    },
+    {
+      "label": "Install watchOS App in Simulator",
+      "type": "shell",
+      "command": "xcrun",
+      "args": [
+        "simctl",
+        "install",
+        "booted",
+        "${workspaceFolder}/.build-xcode/Build/Products/Debug-watchsimulator/Demo_watchOS.app"
+      ],
+      "dependsOn": "Wait for Simulator"
+    },
+    {
+      "label": "Launch watchOS App in Simulator",
+      "type": "shell",
+      "command": "xcrun",
+      "args": [
+        "simctl",
+        "launch",
+        //"--wait-for-debugger",
+        "--terminate-running-process",
+        "--console-pty",
+        "25BC9961-2AF3-40A6-BCF5-EDF0843299F8",
+        "dev.mt.Demo-iOS.watchkitapp"
+      ],
+      "dependsOn": "Install watchOS App in Simulator"
     }
   ]
 }

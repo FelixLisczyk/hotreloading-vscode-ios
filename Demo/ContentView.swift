@@ -1,6 +1,6 @@
 import SwiftUI
 
-#if DEBUG
+#if os(iOS) || os(macOS)
   import Inject
 #endif
 
@@ -12,10 +12,12 @@ struct ContentView: View {
         .background(Color.red)
         .border(.blue)
     }
+    #if os(iOS) || os(macOS)
     .enableInjection()
+    #endif
   }
 
-  #if DEBUG
+  #if os(iOS) || os(macOS)
     @ObserveInjection var inject
   #endif
 }

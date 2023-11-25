@@ -11,8 +11,8 @@ let package = Package(
   name: packageName,
   platforms: [
     .iOS(.v14),
-    // disable building on macOS
-    .macOS("99.0")
+    .watchOS(.v8),
+    .macOS(.v12)
   ],
   products: [
     .library(name: packageName, targets: [packageName])

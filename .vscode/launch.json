@@ -10,7 +10,7 @@
       "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/.build-xcode/Build/Products/Debug-${command:ios-debug.targetSdk}/Demo_iOS.app",
-      "iosBundleId": "dev.mt.Demo",
+      "iosBundleId": "dev.mt.Demo-iOS",
       "iosTarget": "select",
       "preLaunchTask": "iOS - Build"
     },
@@ -19,8 +19,14 @@
       "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/.build-xcode/Build/Products/Debug/Demo_macOS.app",
-      "iosBundleId": "dev.mt.Demo",
       "preLaunchTask": "macOS - Build"
+    },
+    {
+      "name": "watchOS - Launch",
+      "type": "lldb",
+      "request": "attach",
+      "program": "${workspaceFolder}/.build-xcode/Build/Products/Debug/Demo_watchOS.app",
+      "preLaunchTask": "Launch watchOS App in Simulator"
     }
   ]
 }
