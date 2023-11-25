@@ -9,10 +9,25 @@ packages:
     url: https://github.com/krzysztofzablocki/Inject.git
     branch: main
 targets:
-  Demo:
+  Demo_iOS:
     type: application
     platform: iOS
     deploymentTarget: "14.0"
+    sources: [Application, Demo]
+    dependencies:
+      - sdk: SwiftUI.framework
+      - package: HotReloading
+      - package: Inject
+    settings:
+      base:
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 1
+        OTHER_LDFLAGS: "-Xlinker -interposable -Xlinker -undefined -Xlinker dynamic_lookup"
+        INFOPLIST_FILE: "Application/Info.plist"
+  Demo_macOS:
+    type: application
+    platform: macOS
+    deploymentTarget: "12.0"
     sources: [Application, Demo]
     dependencies:
       - sdk: SwiftUI.framework

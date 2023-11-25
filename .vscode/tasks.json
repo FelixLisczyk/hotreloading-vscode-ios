@@ -4,7 +4,8 @@
   "version": "2.0.0",
   "options": {
     "env": {
-      "XCODE_BUILD_COMMAND": "xcodebuild -scheme Demo -configuration Debug -sdk ${command:ios-debug.targetSdk} -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates"
+      "XCODE_BUILD_IOS": "xcodebuild -scheme Demo_iOS -configuration Debug -sdk ${command:ios-debug.targetSdk} -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates",
+      "XCODE_BUILD_MAC": "xcodebuild -scheme Demo_macOS -configuration Debug -sdk macosx -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates"
     }
   },
   "tasks": [
@@ -14,9 +15,9 @@
       "command": "xcodegen"
     },
     {
-      "label": "Build",
+      "label": "iOS - Build",
       "type": "shell",
-      "command": "${XCODE_BUILD_COMMAND} build",
+      "command": "${XCODE_BUILD_IOS} build",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -24,9 +25,25 @@
       "dependsOn": ["xcodegen"]
     },
     {
-      "label": "Clean & Build",
+      "label": "iOS - Clean & Build",
       "type": "shell",
-      "command": "${XCODE_BUILD_COMMAND} clean build",
+      "command": "${XCODE_BUILD_IOS} clean build",
+      "dependsOn": ["xcodegen"]
+    },
+    {
+      "label": "macOS - Build",
+      "type": "shell",
+      "command": "${XCODE_BUILD_MAC} build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": ["xcodegen"]
+    },
+    {
+      "label": "macOS - Clean & Build",
+      "type": "shell",
+      "command": "${XCODE_BUILD_MAC} clean build",
       "dependsOn": ["xcodegen"]
     }
   ]
