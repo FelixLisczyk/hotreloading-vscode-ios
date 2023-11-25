@@ -11,6 +11,9 @@ struct ContentView: View {
         .padding()
         .background(Color.red)
         .border(.blue)
+      Button("Press me") {
+        print("Button pressed")
+      }
     }
     #if os(iOS) || os(macOS)
     .enableInjection()

@@ -25,8 +25,10 @@
       "name": "watchOS - Launch",
       "type": "lldb",
       "request": "attach",
-      "program": "${workspaceFolder}/.build-xcode/Build/Products/Debug/Demo_watchOS.app",
-      "preLaunchTask": "Launch watchOS App in Simulator"
+      // The debugger must attach to the binary inside the simulator's working directory (~/Library/Developer/CoreSimulator/Devices/...) or the process ID
+      // TODO: Parse the PID from the `xcrun simctl launch` command and use it as the `pid` parameter. Enable the `preLaunchTask` again.
+      "pid": "28226"
+      // "preLaunchTask": "Launch watchOS App in Simulator"
     }
   ]
 }
