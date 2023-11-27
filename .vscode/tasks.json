@@ -87,13 +87,13 @@
       "args": [
         "simctl",
         "launch",
-        //"--wait-for-debugger",
         "--terminate-running-process",
         "--console-pty",
         "${WATCH_SIM_UUID}",
         "dev.mt.Demo-iOS.watchkitapp"
       ],
-      "dependsOn": "Install watchOS App in Simulator"
+      "dependsOn": "Install watchOS App in Simulator",
+      "problemMatcher": []
     }
   ]
 }

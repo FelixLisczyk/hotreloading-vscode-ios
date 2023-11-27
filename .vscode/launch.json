@@ -22,13 +22,26 @@
       "preLaunchTask": "macOS - Build"
     },
     {
-      "name": "watchOS - Launch",
+      "name": "watchOS - Attach",
       "type": "lldb",
       "request": "attach",
       // The debugger must attach to the binary inside the simulator's working directory (~/Library/Developer/CoreSimulator/Devices/...) or the process ID
-      // TODO: Parse the PID from the `xcrun simctl launch` command and use it as the `pid` parameter. Enable the `preLaunchTask` again.
-      "pid": "28226"
-      // "preLaunchTask": "Launch watchOS App in Simulator"
+      // This doesn't work yet because the 'pid' value is evaluated BEFORE the simulator has launched the app (configured as `preLaunchTask`).
+      // https://github.com/microsoft/vscode/issues/167921
+      "pid": "${command:pickProcess}"
+      //"pid": "${input:WatchPID}"
+      //"preLaunchTask": "Launch watchOS App in Simulator"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "WatchPID",
+      "type": "command",
+      "command": "shellCommand.execute",
+      "args": {
+        "command": "pgrep 'Demo_watchOS'",
+        "useFirstResult": true
+      }
     }
   ]
 }
