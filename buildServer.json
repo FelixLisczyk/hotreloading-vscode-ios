@@ -5,7 +5,7 @@
   "kind": "xcode",
   "languages": ["c", "cpp", "objective-c", "objective-cpp", "swift"],
   "name": "xcode build server",
-  "scheme": "Demo",
+  "scheme": "App_iOS",
   "version": "0.2",
   "workspace": "/Users/felix/Developer/Swift/Vendor/hotreloading-vscode-ios/Demo.xcodeproj/project.xcworkspace"
 }

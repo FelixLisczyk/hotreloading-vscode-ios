@@ -4,9 +4,9 @@
   "version": "2.0.0",
   "options": {
     "env": {
-      "XCODE_BUILD_IOS": "xcodebuild -scheme Demo_iOS -configuration Debug -sdk ${command:ios-debug.targetSdk} -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates",
-      "XCODE_BUILD_MAC": "xcodebuild -scheme Demo_macOS -configuration Debug -sdk macosx -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates",
-      "XCODE_BUILD_WATCH": "xcodebuild -scheme Demo_watchOS -configuration Debug -sdk watchsimulator -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates",
+      "XCODE_BUILD_IOS": "xcodebuild -scheme App_iOS -configuration Debug -sdk ${command:ios-debug.targetSdk} -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates",
+      "XCODE_BUILD_MAC": "xcodebuild -scheme App_macOS -configuration Debug -sdk macosx -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates",
+      "XCODE_BUILD_WATCH": "xcodebuild -scheme App_watchOS -configuration Debug -sdk watchsimulator -derivedDataPath ${workspaceFolder}/.build-xcode -allowProvisioningUpdates",
       "WATCH_SIM_UUID": "25BC9961-2AF3-40A6-BCF5-EDF0843299F8" // Run `xcrun simctl list` to retrieve the simulator's UUID
     }
   },
@@ -30,6 +30,16 @@
       "label": "iOS - Clean & Build",
       "type": "shell",
       "command": "${XCODE_BUILD_IOS} clean build",
+      "dependsOn": ["xcodegen"]
+    },
+    {
+      "label": "iOS - Test",
+      "type": "shell",
+      "command": "${XCODE_BUILD_IOS} -destination 'platform=iOS Simulator,name=iPhone 15 Pro' test",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
       "dependsOn": ["xcodegen"]
     },
     {
@@ -65,7 +75,7 @@
     {
       "label": "Boot watchOS Simulator",
       "type": "shell",
-      "command": "xcrun simctl boot ${WATCH_SIM_UUID} && sleep 10 || echo 0", // Ignore error if the simulator is already booted
+      "command": "xcrun simctl boot ${WATCH_SIM_UUID} && sleep 10 || echo 0",
       "dependsOn": "watchOS - Build"
     },
     {

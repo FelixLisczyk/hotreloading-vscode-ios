@@ -14,7 +14,7 @@ targets:
     platform: iOS
     deploymentTarget: "14.0"
     sources:
-      - path: Demo
+      - path: Sources/App
         excludes:
           - Info_watchOS.plist
     dependencies:
@@ -24,7 +24,7 @@ targets:
     settings:
       base:
         CURRENT_PROJECT_VERSION: 1
-        INFOPLIST_FILE: "Demo/Info.plist"
+        INFOPLIST_FILE: "Sources/App/Info.plist"
         MARKETING_VERSION: 1
         OTHER_LDFLAGS: "-Xlinker -interposable -Xlinker -undefined -Xlinker dynamic_lookup"
   Demo_macOS:
@@ -32,7 +32,7 @@ targets:
     platform: macOS
     deploymentTarget: "12.0"
     sources:
-      - path: Demo
+      - path: Sources/App
         excludes:
           - Info_watchOS.plist
     dependencies:
@@ -42,7 +42,7 @@ targets:
     settings:
       base:
         CURRENT_PROJECT_VERSION: 1
-        INFOPLIST_FILE: "Demo/Info.plist"
+        INFOPLIST_FILE: "Sources/App/Info.plist"
         MARKETING_VERSION: 1
         OTHER_LDFLAGS: "-Xlinker -interposable -Xlinker -undefined -Xlinker dynamic_lookup"
   Demo_watchOS:
@@ -50,7 +50,7 @@ targets:
     platform: watchOS
     deploymentTarget: "8.0"
     sources:
-      - path: Demo
+      - path: Sources/App
         excludes:
           - Info.plist
     dependencies:
@@ -58,6 +58,39 @@ targets:
     settings:
       base:
         CURRENT_PROJECT_VERSION: 1
-        INFOPLIST_FILE: "Demo/Info_watchOS.plist"
+        INFOPLIST_FILE: "Sources/App/Info_watchOS.plist"
         MARKETING_VERSION: 1
         PRODUCT_BUNDLE_IDENTIFIER: dev.mt.Demo-iOS.watchkitapp
+  UnitTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Sources/Tests/UnitTests]
+    settings:
+      GENERATE_INFOPLIST_FILE: true
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Demo_iOS.app/Demo_iOS
+schemes:
+  App_iOS:
+    build:
+      targets:
+        Demo_iOS: all
+    run:
+      config: Debug
+      excetuable: Demo_iOS
+    test:
+      config: Debug
+      targets:
+        - UnitTests
+  App_macOS:
+    build:
+      targets:
+        Demo_macOS: all
+    run:
+      config: Debug
+      excetuable: Demo_macOS
+  App_watchOS:
+    build:
+      targets:
+        Demo_watchOS: all
+    run:
+      config: Debug
+      excetuable: Demo_watchOS

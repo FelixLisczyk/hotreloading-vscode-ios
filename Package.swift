@@ -31,7 +31,14 @@ let package = Package(
           ])
         )
       ],
-      path: packageName
+      path: "Sources/App"
+    ),
+    .testTarget(
+        name: "UnitTests",
+        dependencies: [
+            .targetItem(name: packageName, condition: nil)
+        ],
+        path: "Sources/Tests/UnitTests"
     )
   ]
 )
