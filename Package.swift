@@ -12,13 +12,13 @@ let package = Package(
   platforms: [
     .iOS(.v14),
     .watchOS(.v8),
-    .macOS(.v12)
+    .macOS(.v12),
   ],
   products: [
-    .library(name: packageName, targets: [packageName])
+    .library(name: packageName, targets: [packageName]),
   ],
   dependencies: [
-    .package(url: "https://github.com/krzysztofzablocki/Inject.git", .branch("main"))
+    .package(url: "https://github.com/krzysztofzablocki/Inject.git", .branch("main")),
   ],
   targets: [
     .target(
@@ -27,18 +27,18 @@ let package = Package(
         .byNameItem(
           name: "Inject",
           condition: .when(platforms: [
-            .iOS
+            .iOS,
           ])
-        )
+        ),
       ],
       path: "Sources/App"
     ),
     .testTarget(
-        name: "UnitTests",
-        dependencies: [
-            .targetItem(name: packageName, condition: nil)
-        ],
-        path: "Sources/Tests/UnitTests"
-    )
+      name: "UnitTests",
+      dependencies: [
+        .targetItem(name: packageName, condition: nil),
+      ],
+      path: "Sources/Tests/UnitTests"
+    ),
   ]
 )

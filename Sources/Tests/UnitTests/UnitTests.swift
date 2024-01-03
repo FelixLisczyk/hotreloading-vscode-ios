@@ -8,9 +8,7 @@
 import XCTest
 
 final class UnitTests: XCTestCase {
-
     func testExample() throws {
         XCTAssertTrue(1 == 1)
     }
-
 }
