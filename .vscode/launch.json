@@ -11,7 +11,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/.build-xcode/Build/Products/Debug-${command:ios-debug.targetSdk}/Demo_iOS.app",
       "iosBundleId": "dev.mt.Demo-iOS",
-      "iosTarget": "select",
+      "iosTarget": "last-selected",
       "preLaunchTask": "iOS - Build"
     },
     {
